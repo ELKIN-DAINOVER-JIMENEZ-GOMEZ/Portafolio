@@ -31,12 +31,6 @@ const EmailIcon = () => (
   </svg>
 );
 
-const ChatIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
-  </svg>
-);
-
 const DownloadIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M12 3v13M6 10l6 7 6-7M4 20h16" />
@@ -117,15 +111,9 @@ export default function About({ isDark }: AboutProps) {
     ? "text-[#8B949E] border-[#30363D]/80 hover:text-[#58A6FF] hover:border-[#58A6FF]/30 hover:bg-[#58A6FF]/5"
     : "text-[#57606A] border-[#D0D7DE]/80 hover:text-[#1D6FA8] hover:border-[#1D6FA8]/30 hover:bg-[#1D6FA8]/5";
 
-  const btnPrimary   = isDark
-    ? "bg-[#58A6FF] text-[#0D1117] hover:bg-[#79BFFF] hover:shadow-[0_8px_20px_rgba(88,166,255,0.25)]"
-    : "bg-[#1D6FA8] text-white hover:bg-[#1A5F91] hover:shadow-[0_8px_20px_rgba(29,111,168,0.2)]";
   const btnOutline   = isDark
     ? "text-[#E6EDF3] border-[#30363D]/90 hover:border-[#58A6FF]/40 hover:text-[#58A6FF] hover:bg-[#58A6FF]/5"
     : "text-[#1F2328] border-[#D0D7DE]/90 hover:border-[#1D6FA8]/40 hover:text-[#1D6FA8] hover:bg-[#1D6FA8]/5";
-
-  const scrollTo = (id: string) =>
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 
   return (
     <section

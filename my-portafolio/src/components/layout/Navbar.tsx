@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import cvPdf from "../../assets/cv/Hoja de vida Elkin B.pdf";
 
 const SunIcon = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -216,7 +217,7 @@ export default function Navbar({ activeSection = "inicio", isDark, onToggleTheme
 
             {/* CV button — solo desktop */}
             <a
-              href="/cv-elkin-jimenez.pdf"
+              href={cvPdf}
               download
               className={`
                 hidden min-[660px]:flex items-center gap-1.5
@@ -292,7 +293,7 @@ export default function Navbar({ activeSection = "inicio", isDark, onToggleTheme
               Disponible para proyectos
             </div>
             <a
-              href="/cv-elkin-jimenez.pdf"
+              href={cvPdf}
               download
               className={`flex items-center gap-1.5 px-3 py-1.5 text-[13px] font-medium rounded-lg border no-underline transition-all duration-200 ${cvBtnTheme}`}
             >

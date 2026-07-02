@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react";
+import cvPdf from "../../assets/cv/Hoja de vida Elkin B.pdf";
 
 // ── Iconos inline ─────────────────────────────────────────────────────────────
 const ProjectsIcon = () => (
@@ -364,7 +365,7 @@ export default function Hero({ isDark }: HeroProps) {
           </button>
 
           <a
-            href="/cv-elkin-jimenez.pdf"
+            href={cvPdf}
             download
             className={`
               flex items-center gap-2 px-6 py-3

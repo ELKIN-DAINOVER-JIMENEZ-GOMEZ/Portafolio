@@ -1,4 +1,5 @@
 import profileImg from "../../assets/images/perfil.png";
+import cvPdf from "../../assets/cv/Hoja de vida Elkin B.pdf";
 
 // ── Props ─────────────────────────────────────────────────────────────────────
 interface AboutProps {
@@ -265,7 +266,7 @@ export default function About({ isDark }: AboutProps) {
             <div className="flex gap-2.5 flex-wrap">
               
               <a
-                href="/cv-elkin-jimenez.pdf"
+                href={cvPdf}
                 download
                 className={`
                   flex items-center gap-[7px]

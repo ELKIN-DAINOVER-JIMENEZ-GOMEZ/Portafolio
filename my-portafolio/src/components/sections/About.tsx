@@ -216,7 +216,7 @@ export default function About({ isDark }: AboutProps) {
                 en frontend y{" "}
                 <strong className={`font-medium ${strong}`}>Java + Spring Boot</strong>{" "}
                 en backend. Me interesa construir soluciones que resuelvan problemas reales
-                de negocio, no solo prototipos.
+                de negocio.
               </p>
             </div>
 

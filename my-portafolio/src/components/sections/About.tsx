@@ -208,7 +208,7 @@ export default function About({ isDark }: AboutProps) {
                 <span className={highlight}>ISO 20022</span> para procesamiento de pagos
                 distribuidos, y plataformas integradas con la API de la{" "}
                 <span className={highlight}>DIAN</span> para facturación electrónica en
-                Colombia. Eso no es común en perfiles junior.
+                Colombia. 
               </p>
               <p className={`text-[15.5px] leading-[1.8] ${muted}`}>
                 Trabajo principalmente con{" "}

@@ -4,13 +4,23 @@ import dentalImg from "../assets/images/dentalcare.png";
 import ecofloraImg from "../assets/images/ecoafa.png";
 
 // ── Tipos ─────────────────────────────────────────────────────────────────────
+export interface LocalizedText {
+  es: string;
+  en: string;
+}
+
+export interface LocalizedList {
+  es: string[];
+  en: string[];
+}
+
 export interface Project {
   id: number;
-  title: string;
-  tagline: string;
+  title: LocalizedText;
+  tagline: LocalizedText;
   image: string;
   iconColor: "blue" | "green" | "purple" | "amber";
-  highlights: string[];
+  highlights: LocalizedList;
   stack: string[];
   featured?: boolean;
   live?: boolean;
@@ -26,18 +36,30 @@ export interface Project {
 export const PROJECTS: Project[] = [
   {
     id: 1,
-    title: "FinNode — Core Bancario",
-    tagline:
-      "Motor de pagos distribuido con microservicios bajo el estándar ISO 20022 y detección de fraude en tiempo real.",
+    title: {
+      es: "FinNode — Core Bancario",
+      en: "FinNode — Banking Core",
+    },
+    tagline: {
+      es: "Motor de pagos distribuido con microservicios bajo el estándar ISO 20022 y detección de fraude en tiempo real.",
+      en: "Distributed payment engine built with microservices under the ISO 20022 standard, with real-time fraud detection.",
+    },
     image: finnodeImg,
     iconColor: "blue",
     featured: true,
     live: true,
-    highlights: [
-      "5 microservicios: auth, accounts, ledger, payment-orchestrator, api-gateway",
-      "Consistencia distribuida con Patrón Saga",
-      "Detección de fraude con IA en tiempo real",
-    ],
+    highlights: {
+      es: [
+        "5 microservicios: auth, accounts, ledger, payment-orchestrator, api-gateway",
+        "Consistencia distribuida con Patrón Saga",
+        "Detección de fraude con IA en tiempo real",
+      ],
+      en: [
+        "5 microservices: auth, accounts, ledger, payment-orchestrator, api-gateway",
+        "Distributed consistency with the Saga Pattern",
+        "Real-time AI-powered fraud detection",
+      ],
+    },
     stack: [
       "Java",
       "Spring Boot",
@@ -58,18 +80,30 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 2,
-    title: "Facturación Electrónica DIAN",
-    tagline:
-      "Plataforma Full Stack que automatiza la emisión, procesamiento y validación de facturas ante la DIAN con la API de Factus.",
+    title: {
+      es: "Facturación Electrónica DIAN",
+      en: "DIAN Electronic Invoicing",
+    },
+    tagline: {
+      es: "Plataforma Full Stack que automatiza la emisión, procesamiento y validación de facturas ante la DIAN con la API de Factus.",
+      en: "Full Stack platform that automates the issuance, processing, and validation of invoices with Colombia's tax authority (DIAN) via the Factus API.",
+    },
     image: dianImg,
     iconColor: "green",
     featured: true,
     live: true,
-    highlights: [
-      "Integración directa con API Factus / DIAN",
-      "Validación de comprobantes fiscales en tiempo real",
-      "Diferenciador clave para empresas colombianas",
-    ],
+    highlights: {
+      es: [
+        "Integración directa con API Factus / DIAN",
+        "Validación de comprobantes fiscales en tiempo real",
+        "Diferenciador clave para empresas colombianas",
+      ],
+      en: [
+        "Direct integration with the Factus / DIAN API",
+        "Real-time validation of tax receipts",
+        "Key differentiator for Colombian businesses",
+      ],
+    },
     stack: ["TypeScript", "React", "Strapi", "PostgreSQL", "JWT"],
     github: "https://github.com/ELKIN-DAINOVER-JIMENEZ-GOMEZ/app-factus",
     githubLabel: "Frontend",
@@ -79,16 +113,27 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 3,
-    title: "Gestor de Citas Dentales",
-    tagline:
-      "Sistema clínico de agendamiento con módulo de mensajería interactiva entre pacientes y personal.",
+    title: {
+      es: "Gestor de Citas Dentales",
+      en: "Dental Appointment Manager",
+    },
+    tagline: {
+      es: "Sistema clínico de agendamiento con módulo de mensajería interactiva entre pacientes y personal.",
+      en: "Clinical scheduling system with an interactive messaging module between patients and staff.",
+    },
     image: dentalImg,
     iconColor: "purple",
     live: true,
-    highlights: [
-      "Módulo de mensajería en tiempo real",
-      "Arquitectura separada: backend Java + frontend JS",
-    ],
+    highlights: {
+      es: [
+        "Módulo de mensajería en tiempo real",
+        "Arquitectura separada: backend Java + frontend JS",
+      ],
+      en: [
+        "Real-time messaging module",
+        "Separated architecture: Java backend + JS frontend",
+      ],
+    },
     stack: ["Java", "Spring Boot", "JavaScript", "PostgreSQL", "REST API"],
     github: "https://github.com/ELKIN-DAINOVER-JIMENEZ-GOMEZ/Gestor-de-citas-backend",
     githubLabel: "Backend",
@@ -98,16 +143,27 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 4,
-    title: "Ecoafa — Sitio Corporativo",
-    tagline:
-      "Web corporativa a la medida para el sector ambiental. El único proyecto con demo en vivo, optimizado para SEO.",
+    title: {
+      es: "Ecoafa — Sitio Corporativo",
+      en: "Ecoafa — Corporate Website",
+    },
+    tagline: {
+      es: "Web corporativa a la medida para el sector ambiental. El único proyecto con demo en vivo, optimizado para SEO.",
+      en: "Custom corporate website for the environmental sector. The only project with a live demo, optimized for SEO.",
+    },
     image: ecofloraImg,
     iconColor: "amber",
     live: true,
-    highlights: [
-      "Desplegado en producción ✓",
-      "Optimizado para SEO y rendimiento adaptivo",
-    ],
+    highlights: {
+      es: [
+        "Desplegado en producción ✓",
+        "Optimizado para SEO y rendimiento adaptivo",
+      ],
+      en: [
+        "Deployed to production ✓",
+        "Optimized for SEO and adaptive performance",
+      ],
+    },
     stack: ["TypeScript", "React", "TailwindCSS", "Vite"],
     github: "https://github.com/ELKIN-DAINOVER-JIMENEZ-GOMEZ/ECOAFA",
     demo: "https://ecoafa.com",

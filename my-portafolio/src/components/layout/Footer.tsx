@@ -3,6 +3,8 @@ interface FooterProps {
   isDark: boolean;
 }
 
+import { useLanguage } from "../../i18n/useLanguage";
+
 // ── Iconos ────────────────────────────────────────────────────────────────────
 const LinkedInIcon = () => (
   <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
@@ -37,12 +39,12 @@ const ArrowUpIcon = () => (
 );
 
 // ── Datos estáticos ───────────────────────────────────────────────────────────
-const NAV_ITEMS = [
-  { label: "Inicio",    section: "inicio"    },
-  { label: "Proyectos", section: "proyectos" },
-  { label: "Skills",    section: "skills"    },
-  { label: "Sobre mí",  section: "sobre-mi"  },
-  { label: "Contacto",  section: "contacto"  },
+const NAV_ITEMS_KEYS = [
+  { key: "nav.inicio",     section: "inicio"    },
+  { key: "nav.proyectos",  section: "proyectos" },
+  { key: "nav.skills",     section: "skills"    },
+  { key: "nav.sobre_mi",   section: "sobre-mi"  },
+  { key: "nav.contacto",   section: "contacto"  },
 ];
 
 const SOCIAL_LINKS = [
@@ -54,6 +56,7 @@ const SOCIAL_LINKS = [
 
 // ── Componente ────────────────────────────────────────────────────────────────
 export default function Footer({ isDark }: FooterProps) {
+  const { t } = useLanguage();
   const year = new Date().getFullYear();
 
   // ── Paletas ────────────────────────────────────────────────────────────────
@@ -108,28 +111,27 @@ export default function Footer({ isDark }: FooterProps) {
               <span className={`font-mono text-[13px] font-normal ${tagline}`}>.dev</span>
             </a>
             <p className={`text-[13.5px] leading-[1.65] max-w-[280px] ${tagline}`}>
-              Full Stack Developer construyendo software para fintech y
-              fiscalidad — de la lógica de negocio a producción.
+              {t("footer.tagline")}
             </p>
             <div className={`flex items-center gap-1.5 text-[12.5px] font-medium ${availText}`}>
               <span className={`w-[6px] h-[6px] rounded-full flex-shrink-0 animate-pulse ${availDot}`} />
-              Disponible para nuevas oportunidades
+              {t("contact.disponibilidad")}
             </div>
           </div>
 
           {/* Navegación */}
           <div className="flex flex-col gap-3">
             <p className={`font-mono text-[11px] font-medium tracking-[0.08em] uppercase ${navLabel}`}>
-              Navegación
+              {t("footer.navegacion")}
             </p>
             <ul className="flex flex-col gap-2.5 list-none m-0 p-0">
-              {NAV_ITEMS.map(({ label, section }) => (
+              {NAV_ITEMS_KEYS.map(({ key, section }) => (
                 <li key={section}>
                   <button
                     onClick={() => scrollTo(section)}
                     className={`text-[13.5px] bg-transparent border-none p-0 cursor-pointer transition-colors duration-200 ${navLink}`}
                   >
-                    {label}
+                    {t(key)}
                   </button>
                 </li>
               ))}
@@ -139,7 +141,7 @@ export default function Footer({ isDark }: FooterProps) {
           {/* Contacto / social */}
           <div className="flex flex-col gap-3">
             <p className={`font-mono text-[11px] font-medium tracking-[0.08em] uppercase ${navLabel}`}>
-              Conecta
+              {t("footer.conecta")}
             </p>
             <div className="flex flex-wrap gap-2">
               {SOCIAL_LINKS.map(({ label, href, icon }) => (
@@ -175,14 +177,14 @@ export default function Footer({ isDark }: FooterProps) {
         {/* Bloque inferior */}
         <div className="flex flex-col-reverse min-[640px]:flex-row items-center justify-between gap-4 pt-6">
           <p className={`text-[12.5px] ${copyText}`}>
-            © {year} Elkin Jiménez. Todos los derechos reservados.
+            © {year} Elkin Jiménez. {t("footer.copyright")}
           </p>
 
           <div className="flex items-center gap-4">
             <p className={`text-[12.5px] flex items-center gap-1 ${madeWithC}`}>
-              Hecho con
+              {t("footer.desarrollado")}
               <span className={`${heart} text-[13px]`}>♥</span>
-              y React + TypeScript
+              {t("footer.stack_suffix")}
             </p>
 
             <button

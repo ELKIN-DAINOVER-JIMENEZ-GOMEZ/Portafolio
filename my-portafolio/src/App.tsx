@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { LanguageProvider } from "./i18n/LanguageContext";
 import Navbar from "./components/layout/Navbar";
 import Hero from "./components/sections/Hero";
 import Projects from "./components/sections/Projects";
@@ -16,7 +17,7 @@ function App() {
   }, [isDark]);
 
   return (
-    <>
+    <LanguageProvider>
       <Navbar isDark={isDark} onToggleTheme={() => setIsDark(!isDark)} />
       <Hero isDark={isDark} />
       <Projects isDark={isDark} />
@@ -24,7 +25,7 @@ function App() {
       <About isDark={isDark} />
       <Contact isDark={isDark} />
       <Footer isDark={isDark} />
-    </>
+    </LanguageProvider>
   );
 }
 export default App

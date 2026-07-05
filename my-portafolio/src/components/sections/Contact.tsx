@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from "react";
+import { useLanguage } from "../../i18n/useLanguage";
 
 // ── Props ─────────────────────────────────────────────────────────────────────
 interface ContactProps {
@@ -88,6 +89,7 @@ type Status = "idle" | "sending" | "sent" | "error";
 
 // ── Componente ────────────────────────────────────────────────────────────────
 export default function Contact({ isDark }: ContactProps) {
+  const { t } = useLanguage();
   const [status, setStatus] = useState<Status>("idle");
   const [form, setForm] = useState({ name: "", email: "", message: "" });
 
@@ -161,14 +163,13 @@ export default function Contact({ isDark }: ContactProps) {
 
         {/* Header */}
         <p className={`font-mono text-[11px] font-medium tracking-[0.1em] uppercase mb-3 ${eyebrow}`}>
-          // contacto
+          // {t("contact.titulo").toLowerCase()}
         </p>
         <h2 className={`text-[36px] font-bold tracking-[-0.03em] mb-2.5 ${titleC}`}>
-          Hablemos de tu próximo proyecto
+          {t("contact.titulo")}
         </h2>
         <p className={`text-[15.5px] leading-[1.65] max-w-[480px] mb-12 ${sub}`}>
-          ¿Tienes una idea, una vacante o un problema técnico interesante?
-          Escríbeme y te respondo lo antes posible.
+          {t("contact.descripcion")}
         </p>
 
         {/* Grid dos columnas */}
@@ -185,10 +186,10 @@ export default function Contact({ isDark }: ContactProps) {
               </span>
               <div className="flex flex-col">
                 <span className={`text-[13.5px] font-semibold ${availText}`}>
-                  Disponible para nuevas oportunidades
+                  {t("contact.disponibilidad")}
                 </span>
                 <span className={`text-[12px] ${availMuted}`}>
-                  Remoto · Híbrido · Presencial en Colombia
+                  {t("about.modalidad_valor")}
                 </span>
               </div>
             </div>
@@ -228,7 +229,7 @@ export default function Contact({ isDark }: ContactProps) {
             {/* Nombre */}
             <div className="flex flex-col gap-1.5">
               <label htmlFor="name" className={`text-[13px] font-medium ${labelC}`}>
-                Nombre
+                {t("contact.nombre")}
               </label>
               <input
                 id="name"
@@ -236,7 +237,7 @@ export default function Contact({ isDark }: ContactProps) {
                 required
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
-                placeholder="Tu nombre"
+                placeholder={t("contact.placeholder_nombre")}
                 className={`
                   rounded-[10px] border px-3.5 py-2.5 text-[14px]
                   outline-none transition-all duration-200
@@ -248,7 +249,7 @@ export default function Contact({ isDark }: ContactProps) {
             {/* Email */}
             <div className="flex flex-col gap-1.5">
               <label htmlFor="email" className={`text-[13px] font-medium ${labelC}`}>
-                Email
+                {t("contact.email")}
               </label>
               <input
                 id="email"
@@ -256,7 +257,7 @@ export default function Contact({ isDark }: ContactProps) {
                 required
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
-                placeholder="tu@email.com"
+                placeholder={t("contact.placeholder_email")}
                 className={`
                   rounded-[10px] border px-3.5 py-2.5 text-[14px]
                   outline-none transition-all duration-200
@@ -268,7 +269,7 @@ export default function Contact({ isDark }: ContactProps) {
             {/* Mensaje */}
             <div className="flex flex-col gap-1.5">
               <label htmlFor="message" className={`text-[13px] font-medium ${labelC}`}>
-                Mensaje
+                {t("contact.mensaje")}
               </label>
               <textarea
                 id="message"
@@ -276,7 +277,7 @@ export default function Contact({ isDark }: ContactProps) {
                 rows={5}
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
-                placeholder="Cuéntame sobre tu proyecto o vacante..."
+                placeholder={t("contact.placeholder_mensaje")}
                 className={`
                   rounded-[10px] border px-3.5 py-2.5 text-[14px]
                   outline-none transition-all duration-200 resize-none
@@ -300,11 +301,11 @@ export default function Contact({ isDark }: ContactProps) {
               `}
             >
               {status === "sending" ? (
-                "Enviando..."
+                t("contact.enviando")
               ) : (
                 <>
                   <SendIcon />
-                  Enviar mensaje
+                  {t("contact.enviar")}
                 </>
               )}
             </button>
@@ -313,7 +314,7 @@ export default function Contact({ isDark }: ContactProps) {
             {status === "sent" && (
               <div className={`flex items-center gap-2 rounded-lg border px-3.5 py-2.5 text-[13px] font-medium ${sentWrap}`}>
                 <CheckIcon />
-                Mensaje enviado. Te responderé pronto.
+                {t("contact.exito")}
               </div>
             )}
 
@@ -321,14 +322,13 @@ export default function Contact({ isDark }: ContactProps) {
             {status === "error" && (
               <div className={`flex items-center gap-2 rounded-lg border px-3.5 py-2.5 text-[13px] font-medium ${errorWrap}`}>
                 <AlertIcon />
-                Algo salió mal. Intenta de nuevo o escríbeme por WhatsApp.
+                {t("contact.error")}
               </div>
             )}
 
             {/* Nota */}
             <p className={`text-[11.5px] leading-[1.5] ${muted}`}>
-              Al enviar este formulario aceptas que use tus datos únicamente
-              para responder tu mensaje.
+              {t("contact.nota_legal")}
             </p>
           </form>
         </div>

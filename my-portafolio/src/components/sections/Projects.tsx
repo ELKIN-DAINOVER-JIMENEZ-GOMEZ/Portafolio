@@ -1,4 +1,5 @@
 import { PROJECTS, type Project } from "../../data/projects";
+import { useLanguage } from "../../i18n/useLanguage";
 
 // ── Props ─────────────────────────────────────────────────────────────────────
 interface ProjectsProps {
@@ -44,7 +45,17 @@ const GlobeIcon = () => (
 );
 
 // ── Componente ProjectCard ────────────────────────────────────────────────────
-function ProjectCard({ project, isDark }: { project: Project; isDark: boolean }) {
+function ProjectCard({
+  project,
+  isDark,
+  t,
+  language,
+}: {
+  project: Project;
+  isDark: boolean;
+  t: (key: string) => string;
+  language: "es" | "en";
+}) {
   const iconRing: Record<Project["iconColor"], string> = {
     blue:   isDark ? "ring-[#58A6FF]/15"  : "ring-[#1D6FA8]/15",
     green:  isDark ? "ring-[#3FB950]/15"  : "ring-[#1A7F37]/15",
@@ -111,7 +122,7 @@ function ProjectCard({ project, isDark }: { project: Project; isDark: boolean })
       >
         <img
           src={project.image}
-          alt={`Captura de pantalla de ${project.title}`}
+          alt={`Captura de pantalla de ${project.title[language]}`}
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.04]"
         />
         {/* Degradado inferior */}
@@ -127,13 +138,13 @@ function ProjectCard({ project, isDark }: { project: Project; isDark: boolean })
         <div className="absolute top-3 right-3 flex flex-col items-end gap-1.5">
           {project.featured && (
             <span className={`font-mono text-[10px] font-semibold tracking-[0.06em] uppercase px-2 py-1 rounded border backdrop-blur-sm ${accentBg}`}>
-              ⭐ Destacado
+              {t("projects.destacado")}
             </span>
           )}
           {project.live && (
             <span className={`text-[10.5px] font-medium px-2 py-1 rounded border backdrop-blur-sm flex items-center gap-1 ${greenBadge}`}>
               <span className={`w-[5px] h-[5px] rounded-full animate-pulse ${dotColor}`} />
-              En producción
+              {t("projects.en_produccion")}
             </span>
           )}
         </div>
@@ -141,17 +152,17 @@ function ProjectCard({ project, isDark }: { project: Project; isDark: boolean })
 
       {/* Título */}
       <h3 className={`text-[17px] font-semibold leading-[1.3] tracking-[-0.01em] relative ${titleColor}`}>
-        {project.title}
+        {project.title[language]}
       </h3>
 
       {/* Tagline */}
       <p className={`text-[13.5px] leading-[1.6] relative ${mutedColor}`}>
-        {project.tagline}
+        {project.tagline[language]}
       </p>
 
       {/* Highlights */}
       <ul className="flex flex-col gap-1.5 relative">
-        {project.highlights.map((h, i) => (
+        {project.highlights[language].map((h, i) => (
           <li key={i} className={`flex items-start gap-2 text-[12.5px] leading-[1.5] ${mutedColor}`}>
             <span
               className="w-[5px] h-[5px] rounded-full flex-shrink-0 mt-[5px] opacity-60"
@@ -206,7 +217,7 @@ function ProjectCard({ project, isDark }: { project: Project; isDark: boolean })
             className={`flex items-center gap-1.5 text-[12.5px] font-medium px-3 py-1.5 rounded-lg border no-underline transition-all duration-200 ${btnGhost}`}
           >
             {project.live ? <ExternalIcon /> : <GlobeIcon />}
-            Sitio web
+            {t("projects.sitio_web")}
           </a>
         )}
       </div>
@@ -216,6 +227,7 @@ function ProjectCard({ project, isDark }: { project: Project; isDark: boolean })
 
 // ── Componente principal ──────────────────────────────────────────────────────
 export default function Projects({ isDark }: ProjectsProps) {
+  const { t, language } = useLanguage();
   const eyebrow = isDark ? "text-[#58A6FF]" : "text-[#1D6FA8]";
   const title   = isDark ? "text-[#E6EDF3]" : "text-[#1F2328]";
   const sub     = isDark ? "text-[#8B949E]" : "text-[#57606A]";
@@ -228,14 +240,13 @@ export default function Projects({ isDark }: ProjectsProps) {
       <div className="max-w-[900px] mx-auto">
         {/* Header */}
         <p className={`font-mono text-[11px] font-medium tracking-[0.1em] uppercase mb-3 ${eyebrow}`}>
-          // proyectos
+          // {t("projects.titulo").toLowerCase()}
         </p>
         <h2 className={`text-[36px] font-bold tracking-[-0.03em] mb-2.5 ${title}`}>
-          Lo que he construido
+          {t("projects.heading")}
         </h2>
         <p className={`text-[15.5px] leading-[1.65] max-w-[480px] mb-12 ${sub}`}>
-          Proyectos reales en producción o con arquitectura lista para producción —
-          nada de clones ni todo-apps.
+          {t("projects.subtitulo")}
         </p>
 
         {/* Grid */}
@@ -244,7 +255,7 @@ export default function Projects({ isDark }: ProjectsProps) {
           style={{ gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))" }}
         >
           {PROJECTS.map((project) => (
-            <ProjectCard key={project.id} project={project} isDark={isDark} />
+            <ProjectCard key={project.id} project={project} isDark={isDark} t={t} language={language} />
           ))}
         </div>
       </div>

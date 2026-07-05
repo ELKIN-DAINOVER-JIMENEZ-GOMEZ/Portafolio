@@ -1,5 +1,6 @@
-import { useEffect, useState, useRef } from "react";
-import cvPdf from "../../assets/cv/Hoja de vida Elkin B.pdf";
+import { useEffect, useState, useRef, useMemo } from "react";
+import cvPdf from "../../assets/cv/Copia de Hoja de vida Elkin fullstack.pdf";
+import { useLanguage } from "../../i18n/useLanguage";
 
 // ── Iconos inline ─────────────────────────────────────────────────────────────
 const ProjectsIcon = () => (
@@ -36,19 +37,13 @@ interface HeroProps {
   isDark: boolean;
 }
 
-// ── Roles para el typewriter ──────────────────────────────────────────────────
-const ROLES = [
-  "Full Stack Developer",
-  "Backend Engineer",
-  "Java · Spring Boot",
-  "React · TypeScript",
-];
-
 // ── Stack badges ──────────────────────────────────────────────────────────────
 const STACK = [
   "Java",
   "Spring Boot",
   "React",
+  "Angular",
+  "JavaScript",
   "TypeScript",
   "PostgreSQL",
   "Docker",
@@ -58,10 +53,19 @@ const STACK = [
 
 // ── Componente ────────────────────────────────────────────────────────────────
 export default function Hero({ isDark }: HeroProps) {
-  const [displayedRole, setDisplayedRole] = useState(ROLES[0]);
+  const { t, language } = useLanguage();
+  const [displayedRole, setDisplayedRole] = useState("");
   const roleIdxRef  = useRef(0);
-  const charIdxRef  = useRef(ROLES[0].length);
+  const charIdxRef  = useRef(0);
   const deletingRef = useRef(false);
+
+  // Obtener los roles según el idioma (acepta array o string)
+  const ROLES = useMemo(() => {
+    const raw = t("hero.roles");
+    if (Array.isArray(raw)) return raw as string[];
+    const asStr = raw == null ? "" : String(raw);
+    return asStr.split(",").map((r: string) => r.trim()).filter(Boolean);
+  }, [language, t]);
 
   // ── Typewriter ──────────────────────────────────────────────────────────────
   useEffect(() => {
@@ -92,9 +96,15 @@ export default function Hero({ isDark }: HeroProps) {
       timeout = setTimeout(tick, deletingRef.current ? 38 : 62);
     };
 
+    // Reset cuando cambia el idioma
+    roleIdxRef.current = 0;
+    charIdxRef.current = 0;
+    deletingRef.current = false;
+    setDisplayedRole("");
+
     timeout = setTimeout(tick, 2000);
     return () => clearTimeout(timeout);
-  }, []);
+  }, [ROLES, language]);
 
   // ── Scroll a sección ────────────────────────────────────────────────────────
   const scrollTo = (id: string) => {
@@ -269,12 +279,12 @@ export default function Hero({ isDark }: HeroProps) {
             <span className={`absolute inset-0 rounded-full animate-ping opacity-40 ${c.availDot}`} />
             <span className={`relative block w-1.5 h-1.5 rounded-full ${c.availDot}`} />
           </span>
-          Full Stack Developer · Colombia
+          {t("hero.badge")}
         </div>
 
         {/* Nombre */}
         <p className={`text-[18px] font-normal mb-1 ${c.greeting} animate-[fadeSlideUp_0.6s_0.1s_ease_both]`}>
-          Hola, soy
+          {t("hero.saludo")}
         </p>
         <h1
           className={`
@@ -317,17 +327,7 @@ export default function Hero({ isDark }: HeroProps) {
             animate-[fadeSlideUp_0.6s_0.25s_ease_both]
           `}
         >
-          Convierto reglas de negocio complejas —{" "}
-          <strong className={`font-medium rounded px-1 py-px font-mono text-[14.5px] ${c.descHighlight}`}>
-            normativa DIAN
-          </strong>{" "}
-          y{" "}
-          <strong className={`font-medium rounded px-1 py-px font-mono text-[14.5px] ${c.descHighlight}`}>
-            estándar ISO 20022
-          </strong>{" "}
-          — en software limpio y listo para producción. Especializado en
-          arquitecturas backend con Java + Spring Boot y frontends modernos
-          en React + TypeScript.
+          {t("hero.descripcion")}
         </p>
 
         {/* Stack badges */}
@@ -361,7 +361,7 @@ export default function Hero({ isDark }: HeroProps) {
             `}
           >
             <ProjectsIcon />
-            Ver proyectos
+            {t("hero.cta_primario")}
           </button>
 
           <a
@@ -376,7 +376,7 @@ export default function Hero({ isDark }: HeroProps) {
             `}
           >
             <DownloadIcon />
-            Descargar CV
+            {t("nav.descargar_cv")}
           </a>
         </div>
 
@@ -391,12 +391,12 @@ export default function Hero({ isDark }: HeroProps) {
         >
           <div className={`flex items-center gap-1.5 text-[13px] opacity-60 ${c.metaText}`}>
             <PinIcon />
-            Colombia
+            {t("hero.ubicacion")}
           </div>
 
           <div className={`flex items-center gap-1.5 text-[13px] opacity-60 ${c.metaText}`}>
             <ClockIcon />
-            +1.5 años de experiencia
+            {t("about.experiencia_valor")}
           </div>
 
           <div className={`flex items-center gap-1.5 text-[13px] ${c.available}`}>
@@ -406,31 +406,12 @@ export default function Hero({ isDark }: HeroProps) {
                 animate-pulse ${c.availDot}
               `}
             />
-            Disponible para nuevas oportunidades
+            {t("about.disponible_proyectos")}
           </div>
         </div>
       </div>
 
-      {/*
-       * ── Animaciones globales (añadir a index.css o tailwind.config.js) ──
-       *
-       * En tu tailwind.config.js, dentro de theme.extend:
-       *
-       * keyframes: {
-       *   fadeSlideUp: {
-       *     from: { opacity: '0', transform: 'translateY(18px)' },
-       *     to:   { opacity: '1', transform: 'translateY(0)' },
-       *   },
-       *   blink: {
-       *     '0%, 100%': { opacity: '1' },
-       *     '50%': { opacity: '0' },
-       *   },
-       * },
-       * animation: {
-       *   'fade-slide-up': 'fadeSlideUp 0.6s ease both',
-       *   'blink': 'blink 1s step-end infinite',
-       * },
-       */}
+     
     </section>
   );
 }

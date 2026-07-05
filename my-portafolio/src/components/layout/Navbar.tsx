@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import cvPdf from "../../assets/cv/Hoja de vida Elkin B.pdf";
+import cvPdf from "../../assets/cv/Copia de Hoja de vida Elkin fullstack.pdf";
+import { useLanguage } from "../../i18n/useLanguage";
 
 const SunIcon = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -43,11 +44,11 @@ const CloseIcon = () => (
 );
 
 const navItems = [
-  { label: "Inicio",     section: "inicio"    },
-  { label: "Proyectos",  section: "proyectos" },
-  { label: "Skills",     section: "skills"    },
-  { label: "Sobre mí",   section: "sobre-mi"  },
-  { label: "Contacto",   section: "contacto"  },
+  { key: "nav.inicio",     section: "inicio"    },
+  { key: "nav.proyectos",  section: "proyectos" },
+  { key: "nav.skills",     section: "skills"    },
+  { key: "nav.sobre_mi",   section: "sobre-mi"  },
+  { key: "nav.contacto",   section: "contacto"  },
 ];
 
 interface NavbarProps {
@@ -57,6 +58,7 @@ interface NavbarProps {
 }
 
 export default function Navbar({ activeSection = "inicio", isDark, onToggleTheme }: NavbarProps) {
+  const { language, toggleLanguage, t } = useLanguage();
   const [scrolled, setScrolled]   = useState(false);
   const [menuOpen, setMenuOpen]   = useState(false);
 
@@ -175,13 +177,13 @@ export default function Navbar({ activeSection = "inicio", isDark, onToggleTheme
 
           {/* Links — ocultos en mobile */}
           <ul className="hidden min-[660px]:flex items-center gap-1.5 list-none m-0 p-0">
-            {navItems.map(({ label, section }) => (
+            {navItems.map(({ key, section }) => (
               <li key={section}>
                 <button
                   onClick={() => scrollTo(section)}
                   className={`${linkBase} ${activeSection === section ? linkActive : linkInactive}`}
                 >
-                  {label}
+                  {t(key)}
                 </button>
               </li>
             ))}
@@ -193,13 +195,37 @@ export default function Navbar({ activeSection = "inicio", isDark, onToggleTheme
             {/* Badge disponible — solo desktop */}
             <div className={`hidden min-[820px]:flex items-center gap-1.5 text-[13px] font-medium rounded-full px-3 py-1.5 whitespace-nowrap ${badgeTheme}`}>
               <span className={`w-1.5 h-1.5 rounded-full animate-pulse ${isDark ? "bg-[#3FB950]" : "bg-[#1A7F37]"}`} />
-              Disponible
+              {t("nav.disponible")}
             </div>
+
+            {/* Language toggle */}
+            <button
+              onClick={toggleLanguage}
+              title={t("nav.cambiar_idioma")}
+              className={`
+                flex items-center justify-center w-10 h-10
+                rounded-[10px] border text-sm
+                transition-all duration-200 cursor-pointer
+                ${isDark
+                  ? "text-[#A371F7] bg-[#A371F7]/8 border border-[#A371F7]/25 hover:bg-[#A371F7]/15 hover:border-[#A371F7]/40"
+                  : "text-[#7B3FF2] bg-[#7B3FF2]/8 border border-[#7B3FF2]/25 hover:bg-[#7B3FF2]/15 hover:border-[#7B3FF2]/40"
+                }
+              `}
+            >
+              <span className="relative flex items-center justify-center w-4 h-4">
+                <span className={`absolute transition-all duration-300 ${language === "es" ? "opacity-100" : "opacity-0"}`}>
+                  ES
+                </span>
+                <span className={`absolute transition-all duration-300 text-[11px] font-bold ${language === "en" ? "opacity-100" : "opacity-0"}`}>
+                  EN
+                </span>
+              </span>
+            </button>
 
             {/* Theme toggle */}
             <button
               onClick={onToggleTheme}
-              title={isDark ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
+              title={isDark ? t("nav.cambiar_idioma") : "Cambiar a modo oscuro"}
               className={`
                 flex items-center justify-center w-10 h-10
                 rounded-[10px] border text-sm
@@ -228,7 +254,7 @@ export default function Navbar({ activeSection = "inicio", isDark, onToggleTheme
               `}
             >
               <DownloadIcon />
-              Descargar CV
+              {t("nav.descargar_cv")}
             </a>
 
             {/* Hamburguesa — solo mobile */}
@@ -270,7 +296,7 @@ export default function Navbar({ activeSection = "inicio", isDark, onToggleTheme
           `}</style>
 
           <ul className="list-none m-0 p-2">
-            {navItems.map(({ label, section }) => (
+            {navItems.map(({ key, section }) => (
               <li key={section}>
                 <button
                   onClick={() => scrollTo(section)}
@@ -281,7 +307,7 @@ export default function Navbar({ activeSection = "inicio", isDark, onToggleTheme
                     ${activeSection === section ? mobileLinkActive : mobileLinkInactive}
                   `}
                 >
-                  {label}
+                  {t(key)}
                 </button>
               </li>
             ))}
@@ -290,16 +316,25 @@ export default function Navbar({ activeSection = "inicio", isDark, onToggleTheme
           <div className={`border-t px-4 py-3 flex items-center justify-between ${mobileFooterTheme}`}>
             <div className={`flex items-center gap-1.5 text-[12px] font-medium rounded-full px-2.5 py-1 ${badgeTheme}`}>
               <span className={`w-1.5 h-1.5 rounded-full animate-pulse ${isDark ? "bg-[#3FB950]" : "bg-[#1A7F37]"}`} />
-              Disponible para proyectos
+              {t("nav.disponible_proyectos")}
             </div>
-            <a
-              href={cvPdf}
-              download
-              className={`flex items-center gap-1.5 px-3 py-1.5 text-[13px] font-medium rounded-lg border no-underline transition-all duration-200 ${cvBtnTheme}`}
-            >
-              <DownloadIcon />
-              CV
-            </a>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={toggleLanguage}
+                title={t("nav.cambiar_idioma")}
+                className={`flex items-center justify-center px-2 py-1.5 text-[12px] font-bold rounded-lg border no-underline transition-all duration-200 whitespace-nowrap ${isDark ? "text-[#A371F7] bg-[#A371F7]/10 border-[#A371F7]/25 hover:bg-[#A371F7]/20" : "text-[#7B3FF2] bg-[#7B3FF2]/10 border-[#7B3FF2]/25 hover:bg-[#7B3FF2]/20"}`}
+              >
+                {language === "es" ? "EN" : "ES"}
+              </button>
+              <a
+                href={cvPdf}
+                download
+                className={`flex items-center gap-1.5 px-3 py-1.5 text-[13px] font-medium rounded-lg border no-underline transition-all duration-200 ${cvBtnTheme}`}
+              >
+                <DownloadIcon />
+                {t("nav.cv")}
+              </a>
+            </div>
           </div>
         </div>
       )}

@@ -1,5 +1,6 @@
 import profileImg from "../../assets/images/perfil.png";
-import cvPdf from "../../assets/cv/Hoja de vida Elkin B.pdf";
+import cvPdf from "../../assets/cv/Copia de Hoja de vida Elkin fullstack.pdf";
+import { useLanguage } from "../../i18n/useLanguage";
 
 // ── Props ─────────────────────────────────────────────────────────────────────
 interface AboutProps {
@@ -38,21 +39,6 @@ const DownloadIcon = () => (
   </svg>
 );
 
-// ── Datos estáticos ───────────────────────────────────────────────────────────
-const INFO_CARDS = [
-  { label: "Ubicación",   value: "📍 Colombia"  },
-  { label: "Experiencia", value: "1.5+ años"    },
-  { label: "Modalidad",   value: "Presencial / Híbrido / Remoto" },
-  { label: "Enfoque",     value: "Full Stack"   },
-];
-
-const VALUES = [
-  { icon: "*", text: "Prefiero arquitecturas bien pensadas sobre código rápido que hay que reescribir." },
-  { icon: "*", text: "Me interesa entender el negocio antes de escribir la primera línea." },
-  { icon: "*", text: "Aprendo construyendo — cada proyecto es una oportunidad de subir el nivel." },
-  { icon: "*", text: "Comunicación clara: prefiero hacer la pregunta incómoda ahora que entregar algo mal." },
-];
-
 const CONTACT_LINKS = [
   {
     label: "LinkedIn",
@@ -82,6 +68,7 @@ const CONTACT_LINKS = [
 
 // ── Componente ────────────────────────────────────────────────────────────────
 export default function About({ isDark }: AboutProps) {
+  const { t } = useLanguage();
   // ── Paletas ────────────────────────────────────────────────────────────────
   const bg        = isDark ? "bg-[#0D1117]"    : "bg-[#F6F8FA]";
   const eyebrow   = isDark ? "text-[#58A6FF]"  : "text-[#1D6FA8]";
@@ -125,10 +112,10 @@ export default function About({ isDark }: AboutProps) {
 
         {/* Header */}
         <p className={`font-mono text-[11px] font-medium tracking-[0.1em] uppercase mb-3 ${eyebrow}`}>
-          // sobre mí
+          // {t("about.titulo").toLowerCase()}
         </p>
         <h2 className={`text-[36px] font-bold tracking-[-0.03em] mb-12 ${titleC}`}>
-          ¿Quién está detrás del código?
+          {t("about.titulo")}
         </h2>
 
         {/* Grid dos columnas */}
@@ -164,10 +151,10 @@ export default function About({ isDark }: AboutProps) {
                 <span className={`w-[7px] h-[7px] rounded-full flex-shrink-0 animate-pulse ${badgeDot}`} />
                 <div className="flex flex-col">
                   <span className={`text-[12px] font-semibold leading-tight ${badgeAvail}`}>
-                    Disponible
+                    {t("nav.disponible")}
                   </span>
                   <span className={`text-[11px] leading-tight ${muted}`}>
-                    Presencial / Hibrido / Remoto
+                    {t("about.modalidad_valor")}
                   </span>
                 </div>
               </div>
@@ -175,7 +162,12 @@ export default function About({ isDark }: AboutProps) {
 
             {/* Info rápida */}
             <div className="grid grid-cols-2 gap-2">
-              {INFO_CARDS.map(({ label, value }) => (
+              {[
+                { label: t("about.ubicacion"), value: t("about.ubicacion_valor") },
+                { label: t("about.experiencia"), value: t("about.experiencia_valor") },
+                { label: t("about.modalidad"), value: t("about.modalidad_valor") },
+                { label: t("about.enfoque"), value: t("about.enfoque_valor") },
+              ].map(({ label, value }) => (
                 <div
                   key={label}
                   className={`rounded-[10px] border px-3.5 py-3 flex flex-col gap-0.5 ${infoCardBg}`}
@@ -197,26 +189,23 @@ export default function About({ isDark }: AboutProps) {
             {/* Bio */}
             <div className="flex flex-col gap-4">
               <p className={`text-[15.5px] leading-[1.8] ${muted}`}>
-                Soy{" "}
-                <strong className={`font-medium ${strong}`}>Elkin Jiménez</strong>,
-                desarrollador Full Stack con más de 1.5 años construyendo software para
-                sectores exigentes. Me especializo en convertir reglas de negocio complejas
-                en soluciones técnicas limpias y listas para producción.
+                {t("about.bio_1_pre")}{" "}
+                <strong className={`font-medium ${strong}`}>Elkin Jiménez</strong>
+                {t("about.bio_1_post")}
               </p>
               <p className={`text-[15.5px] leading-[1.8] ${muted}`}>
-                He implementado sistemas bajo el estándar{" "}
-                <span className={highlight}>ISO 20022</span> para procesamiento de pagos
-                distribuidos, y plataformas integradas con la API de la{" "}
-                <span className={highlight}>DIAN</span> para facturación electrónica en
-                Colombia. 
+                {t("about.bio_2_pre")}{" "}
+                <span className={highlight}>ISO 20022</span>{" "}
+                {t("about.bio_2_mid")}{" "}
+                <span className={highlight}>DIAN</span>{" "}
+                {t("about.bio_2_post")}
               </p>
               <p className={`text-[15.5px] leading-[1.8] ${muted}`}>
-                Trabajo principalmente con{" "}
+                {t("about.bio_3_pre")}{" "}
                 <strong className={`font-medium ${strong}`}>React + TypeScript</strong>{" "}
-                en frontend y{" "}
+                {t("about.bio_3_mid")}{" "}
                 <strong className={`font-medium ${strong}`}>Java + Spring Boot</strong>{" "}
-                en backend. Me interesa construir soluciones que resuelvan problemas reales
-                de negocio.
+                {t("about.bio_3_post")}
               </p>
             </div>
 
@@ -226,12 +215,17 @@ export default function About({ isDark }: AboutProps) {
             {/* Valores */}
             <div>
               <p className={`text-[13px] font-semibold mb-3 tracking-[-0.01em] ${valuesTitle}`}>
-                Lo que me define como desarrollador
+                {t("about.principios_titulo")}
               </p>
               <ul className="flex flex-col gap-2.5">
-                {VALUES.map(({ icon, text }) => (
+                {[
+                  t("about.principio_1"),
+                  t("about.principio_2"),
+                  t("about.principio_3"),
+                  t("about.principio_4"),
+                ].map((text) => (
                   <li key={text} className={`flex items-start gap-2.5 text-[14px] leading-[1.55] ${muted}`}>
-                    <span className="text-[15px] flex-shrink-0 mt-px">{icon}</span>
+                    <span className="text-[15px] flex-shrink-0 mt-px">*</span>
                     {text}
                   </li>
                 ))}
@@ -278,7 +272,7 @@ export default function About({ isDark }: AboutProps) {
                 `}
               >
                 <DownloadIcon />
-                Descargar CV
+                {t("about.descargar_cv")}
               </a>
             </div>
 

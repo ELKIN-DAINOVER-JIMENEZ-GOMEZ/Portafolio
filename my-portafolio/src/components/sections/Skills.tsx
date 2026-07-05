@@ -1,5 +1,6 @@
 import { SKILL_CATEGORIES, SKILL_STATS } from "../../data/skills";
 import type { SkillCategory, Skill, SkillLevel } from "../../data/skills";
+import { useLanguage } from "../../i18n/useLanguage";
 
 // ── Props ─────────────────────────────────────────────────────────────────────
 interface SkillsProps {
@@ -25,17 +26,29 @@ function levelStyles(level: SkillLevel, isDark: boolean): string {
   return isDark ? map[level].dark : map[level].light;
 }
 
+// Función para traducir niveles
+function getLevelTranslation(level: SkillLevel, t: (key: string) => string): string {
+  const map: Record<SkillLevel, string> = {
+    principal: t("skills.principal"),
+    intermedio: t("skills.intermedio"),
+    "básico": t("skills.basico"),
+  };
+  return map[level];
+}
+
 // ── Sub-componente: fila de una skill ─────────────────────────────────────────
 function SkillRow({
   skill,
   accent,
   index,
   isDark,
+  t,
 }: {
   skill: Skill;
   accent: string;
   index: number;
   isDark: boolean;
+  t: (key: string) => string;
 }) {
   const nameColor  = isDark ? "text-[#C9D1D9]" : "text-[#1F2328]";
   const trackColor = isDark ? "bg-[#30363D]/80" : "bg-[#D0D7DE]/80";
@@ -54,7 +67,7 @@ function SkillRow({
             ${levelStyles(skill.level, isDark)}
           `}
         >
-          {skill.level}
+          {getLevelTranslation(skill.level, t)}
         </span>
       </div>
 
@@ -77,9 +90,11 @@ function SkillRow({
 function SkillCard({
   category,
   isDark,
+  t,
 }: {
   category: SkillCategory;
   isDark: boolean;
+  t: (key: string) => string;
 }) {
   const cardBg     = isDark
     ? "bg-[#161B22]/50 border-[#30363D]/80 hover:border-[#58A6FF]/20 hover:shadow-[0_8px_32px_rgba(0,0,0,0.25)]"
@@ -135,6 +150,7 @@ function SkillCard({
             accent={category.accent}
             index={i}
             isDark={isDark}
+            t={t}
           />
         ))}
       </div>
@@ -144,6 +160,7 @@ function SkillCard({
 
 // ── Componente principal ──────────────────────────────────────────────────────
 export default function Skills({ isDark }: SkillsProps) {
+  const { t } = useLanguage();
   const bg       = isDark ? "bg-[#0D1117]"   : "bg-[#F6F8FA]";
   const eyebrow  = isDark ? "text-[#58A6FF]" : "text-[#1D6FA8]";
   const title    = isDark ? "text-[#E6EDF3]" : "text-[#1F2328]";
@@ -171,13 +188,13 @@ export default function Skills({ isDark }: SkillsProps) {
 
         {/* Header */}
         <p className={`font-mono text-[11px] font-medium tracking-[0.1em] uppercase mb-3 ${eyebrow}`}>
-          // skills
+          // {t("skills.titulo").toLowerCase()}
         </p>
         <h2 className={`text-[36px] font-bold tracking-[-0.03em] mb-2.5 ${title}`}>
-          Mi stack técnico
+          {t("skills.titulo")}
         </h2>
         <p className={`text-[15.5px] leading-[1.65] max-w-[480px] mb-12 ${sub}`}>
-          Tecnologías con las que construyo software real — no solo cursos completados.
+          {t("skills.subtitulo")}
         </p>
 
         {/* Grid de categorías */}
@@ -186,7 +203,7 @@ export default function Skills({ isDark }: SkillsProps) {
           style={{ gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))" }}
         >
           {SKILL_CATEGORIES.map((cat) => (
-            <SkillCard key={cat.category} category={cat} isDark={isDark} />
+            <SkillCard key={cat.category} category={cat} isDark={isDark} t={t} />
           ))}
         </div>
 

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import cvPdf from "../../assets/cv/Copia de Hoja de vida Elkin fullstack.pdf";
+import cvPdf from "../../assets/cv/CV_Elkin_Jimenez_Backend (1).pdf";
 import { useLanguage } from "../../i18n/useLanguage";
 
 const SunIcon = () => (

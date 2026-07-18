@@ -12,17 +12,17 @@
     "cambiar_idioma": "Cambiar idioma"
   },
   "hero": {
-    "badge": "Full Stack Developer · Colombia",
+    "badge": "Backend Developer · Colombia",
     "saludo": "Hola, soy",
     "titulo": "Hola! Soy Elkin",
-    "subtitulo": "Desarrollador Full Stack",
-    "descripcion": "Construyo aplicaciones web robustas y escalables con tecnologías modernas.",
+    "subtitulo": "Desarrollador Backend",
+    "descripcion": "Construyo aplicaciones robustas y de calidad, pensando siempre en la experiencia y las necesidades del cliente final, con Java, Spring Boot y tecnologías web modernas.",
     "cta_primario": "Ver Proyectos",
     "cta_secundario": "Contactarte",
     "ubicacion": "📍 Colombia",
     "roles": [
-      "Full Stack Developer",
-      "Backend Engineer",
+      "Backend Developer",
+      "Software Developer",
       "Java · Spring Boot",
       "React · TypeScript",
       "Angular · TypeScript"
@@ -37,15 +37,15 @@
     "ubicacion_valor": "📍 Colombia",
     "experiencia_valor": "1.5+ años",
     "modalidad_valor": "Presencial / Híbrido / Remoto",
-    "enfoque_valor": "Full Stack",
+    "enfoque_valor": "Backend",
     "bio_1_pre": "Soy",
-    "bio_1_post": ", desarrollador Full Stack con más de 1.5 años construyendo software para sectores exigentes. Me especializo en convertir reglas de negocio complejas en soluciones técnicas limpias y listas para producción.",
+    "bio_1_post": ",desarrollador backend, construyo software eficiente y de calidad para el sector fintech. Me especializo en convertir reglas de negocio complejas en soluciones técnicas limpias y listas para producción.",
     "bio_2_pre": "He implementado sistemas bajo el estándar",
     "bio_2_mid": "para procesamiento de pagos distribuidos, y plataformas integradas con la API de la",
     "bio_2_post": "para facturación electrónica en Colombia.",
     "bio_3_pre": "Trabajo principalmente con",
-    "bio_3_mid": "en frontend y",
-    "bio_3_post": "en backend. Me interesa construir soluciones que resuelvan problemas reales de negocio.",
+    "bio_3_mid": "en backend aunque también puedo desarrollar",
+    "bio_3_post": "con tecngologias modernas en frontend. Me interesa construir soluciones que resuelvan problemas reales de negocio.",
     "principios_titulo": "Mis principios",
     "principio_1": "Prefiero arquitecturas bien pensadas sobre código rápido que hay que reescribir.",
     "principio_2": "Me interesa entender el negocio antes de escribir la primera línea.",
@@ -66,7 +66,7 @@
   },
   "skills": {
     "titulo": "Skills",
-    "subtitulo": "Tecnologías con las que construyo software real — no solo cursos completados.",
+    "subtitulo": "Tecnologías con las que construyo software real.",
     "frontend": "Frontend",
     "backend": "Backend",
     "base_datos": "Base de datos",
@@ -77,7 +77,7 @@
   },
   "contact": {
     "titulo": "Trabajemos juntos",
-    "descripcion": "¿Tienes un proyecto en mente? Déjame tu mensaje y te responderé lo antes posible.",
+    "descripcion": "Déjame tu mensaje y te responderé lo antes posible.",
     "disponibilidad": "Disponible para nuevas oportunidades",
     "nombre": "Nombre",
     "email": "Email",
@@ -96,12 +96,12 @@
     "nota_legal": "Al enviar este formulario aceptas que use tus datos únicamente para responder tu mensaje."
   },
   "footer": {
-    "derechos": "© 2024 Elkin Jiménez. Todos los derechos reservados.",
+    "derechos": "© 2026 Elkin Jiménez. Todos los derechos reservados.",
     "copyright": "Todos los derechos reservados.",
     "desarrollado": "Desarrollado con",
     "navegacion": "Navegación",
     "conecta": "Conecta",
     "tagline": "Full Stack Developer construyendo software para fintech y fiscalidad — de la lógica de negocio a producción.",
-    "stack_suffix": "y React + TypeScript"
+    "stack_suffix": ""
   }
 }

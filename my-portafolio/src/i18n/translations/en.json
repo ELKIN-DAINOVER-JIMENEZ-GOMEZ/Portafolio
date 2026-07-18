@@ -12,17 +12,17 @@
     "cambiar_idioma": "Change language"
   },
   "hero": {
-    "badge": "Full Stack Developer · Colombia",
+    "badge": "Backend Developer · Colombia",
     "saludo": "Hi, I'm",
     "titulo": "Hi! I'm Elkin",
-    "subtitulo": "Full Stack Developer",
-    "descripcion": "I build robust and scalable web applications with modern technologies.",
+    "subtitulo": "Backend Developer",
+    "descripcion": "I build robust, high-quality applications with the end user's experience and needs in mind, using Java, Spring Boot, and modern web technologies.",
     "cta_primario": "View Projects",
     "cta_secundario": "Contact Me",
     "ubicacion": "📍 Colombia",
     "roles": [
-      "Full Stack Developer",
-      "Backend Engineer",
+      "Backend Developer",
+      "Software Developer",
       "Java · Spring Boot",
       "React · TypeScript",
       "Angular · TypeScript"
@@ -37,9 +37,9 @@
     "ubicacion_valor": "📍 Colombia",
     "experiencia_valor": "1.5+ years",
     "modalidad_valor": "On-site / Hybrid / Remote",
-    "enfoque_valor": "Full Stack",
+    "enfoque_valor": "Backend",
     "bio_1_pre": "I am",
-    "bio_1_post": ", a Full Stack developer with more than 1.5 years building software for demanding sectors. I specialize in turning complex business rules into clean, production-ready technical solutions.",
+    "bio_1_post": ", Backend developer, I build efficient and high-quality software for the fintech sector. I specialize in turning complex business rules into clean, production-ready technical solutions.",
     "bio_2_pre": "I have implemented systems under the",
     "bio_2_mid": "standard for distributed payment processing, and platforms integrated with the",
     "bio_2_post": "API for electronic invoicing in Colombia.",
@@ -66,7 +66,7 @@
   },
   "skills": {
     "titulo": "Skills",
-    "subtitulo": "Technologies I use to build real software — not just completed courses.",
+    "subtitulo": "Technologies I use to build real software.",
     "frontend": "Frontend",
     "backend": "Backend",
     "base_datos": "Database",
@@ -77,7 +77,7 @@
   },
   "contact": {
     "titulo": "Let's Work Together",
-    "descripcion": "Do you have a project in mind? Leave me a message and I'll respond as soon as possible.",
+    "descripcion": "Leave me a message and I'll respond as soon as possible.",
     "disponibilidad": "Available for new opportunities",
     "nombre": "Name",
     "email": "Email",
@@ -96,12 +96,12 @@
     "nota_legal": "By submitting this form you agree that I will use your data only to respond to your message."
   },
   "footer": {
-    "derechos": "© 2024 Elkin Jiménez. All rights reserved.",
+    "derechos": "© 2026 Elkin Jiménez. All rights reserved.",
     "copyright": "All rights reserved.",
     "desarrollado": "Built with",
     "navegacion": "Navigation",
     "conecta": "Connect",
     "tagline": "Full Stack Developer building software for fintech and tax compliance — from business logic to production.",
-    "stack_suffix": "and React + TypeScript"
+    "stack_suffix": ""
   }
 }

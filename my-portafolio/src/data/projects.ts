@@ -148,8 +148,8 @@ export const PROJECTS: Project[] = [
       en: "Ecoafa — Corporate Website",
     },
     tagline: {
-      es: "Web corporativa a la medida para el sector ambiental. El único proyecto con demo en vivo, optimizado para SEO.",
-      en: "Custom corporate website for the environmental sector. The only project with a live demo, optimized for SEO.",
+      es: "Web corporativa a la medida para el sector ambiental. Desarrollado y  optimizado para SEO.",
+      en: "Custom corporate website for the environmental sector. Developed and optimized for SEO.",
     },
     image: ecofloraImg,
     iconColor: "amber",

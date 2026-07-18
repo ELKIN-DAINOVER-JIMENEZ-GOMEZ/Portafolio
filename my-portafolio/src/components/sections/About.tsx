@@ -1,5 +1,5 @@
 import profileImg from "../../assets/images/perfil.png";
-import cvPdf from "../../assets/cv/Copia de Hoja de vida Elkin fullstack.pdf";
+import cvPdf from "../../assets/cv/CV_Elkin_Jimenez_Backend (1).pdf";
 import { useLanguage } from "../../i18n/useLanguage";
 
 // ── Props ─────────────────────────────────────────────────────────────────────
@@ -202,9 +202,9 @@ export default function About({ isDark }: AboutProps) {
               </p>
               <p className={`text-[15.5px] leading-[1.8] ${muted}`}>
                 {t("about.bio_3_pre")}{" "}
-                <strong className={`font-medium ${strong}`}>React + TypeScript</strong>{" "}
-                {t("about.bio_3_mid")}{" "}
                 <strong className={`font-medium ${strong}`}>Java + Spring Boot</strong>{" "}
+                {t("about.bio_3_mid")}{" "}
+                
                 {t("about.bio_3_post")}
               </p>
             </div>

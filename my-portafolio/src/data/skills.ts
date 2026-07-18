@@ -26,12 +26,12 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
     accent: "#58A6FF",
     iconBg: "rgba(88,166,255,0.1)",
     skills: [
-      { name: "React",        level: "principal",  pct: 90 },
-      { name: "TypeScript",   level: "principal",  pct: 88 },
-      { name: "TailwindCSS",  level: "principal",  pct: 85 },
-      { name: "JavaScript",   level: "principal",  pct: 90 },
-      { name: "Angular",      level: "intermedio", pct: 60 },
-      { name: "HTML5 / CSS3", level: "principal",  pct: 92 },
+      { name: "React",        level: "principal",  pct:64 },
+      { name: "TypeScript",   level: "principal",  pct: 64 },
+      { name: "TailwindCSS",  level: "principal",  pct: 64 },
+      { name: "JavaScript",   level: "principal", pct: 64 },
+      { name: "Angular",      level: "principal", pct: 64 },
+      { name: "HTML5 / CSS3", level: "principal",  pct: 90 },
     ],
   },
   {
@@ -40,10 +40,10 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
     accent: "#3FB950",
     iconBg: "rgba(63,185,80,0.1)",
     skills: [
-      { name: "Java",        level: "principal",  pct: 88 },
-      { name: "Spring Boot", level: "principal",  pct: 85 },
-      { name: "REST API",    level: "principal",  pct: 90 },
-      { name: "JWT / Auth",  level: "principal",  pct: 82 },
+      { name: "Java",        level: "principal",  pct: 75 },
+      { name: "Spring Boot", level: "principal",  pct: 80 },
+      { name: "REST API",    level: "principal",  pct: 80 },
+      { name: "JWT / Auth",  level: "principal",  pct: 80 },
       { name: "Strapi",      level: "intermedio", pct: 65 },
     ],
   },
@@ -55,7 +55,7 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
     skills: [
       { name: "PostgreSQL", level: "principal",  pct: 85 },
       { name: "SQL",        level: "principal",  pct: 88 },
-      { name: "MySQL",      level: "intermedio", pct: 70 },
+      { name: "MySQL",      level: "principal", pct: 70 },
     ],
   },
   {

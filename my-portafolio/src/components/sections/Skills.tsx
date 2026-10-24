@@ -1,4 +1,4 @@
-import { SKILL_CATEGORIES, SKILL_STATS } from "../../data/skills";
+import { SKILL_CATEGORIES } from "../../data/skills";
 import type { SkillCategory, Skill } from "../../data/skills";
 import { useLanguage } from "../../i18n/useLanguage";
 
@@ -101,14 +101,10 @@ function SkillCard({
 // ── Componente principal ──────────────────────────────────────────────────────
 export default function Skills({ isDark }: SkillsProps) {
   const { t } = useLanguage();
-  const bg      = isDark ? "bg-[#0D1117]"   : "bg-[#F6F8FA]";
+  const bg = isDark ? "bg-[#0D1117]" : "bg-[#F6F8FA]";
   const eyebrow = isDark ? "text-[#58A6FF]" : "text-[#1D6FA8]";
-  const title   = isDark ? "text-[#E6EDF3]" : "text-[#1F2328]";
-  const sub     = isDark ? "text-[#8B949E]" : "text-[#57606A]";
-  const divider = isDark ? "border-[#30363D]/50" : "border-[#D0D7DE]/60";
-  const statNum = isDark ? "text-[#E6EDF3]" : "text-[#1F2328]";
-  const statSuf = isDark ? "text-[#58A6FF]" : "text-[#1D6FA8]";
-  const statLab = isDark ? "text-[#8B949E]" : "text-[#57606A]";
+  const title = isDark ? "text-[#E6EDF3]" : "text-[#1F2328]";
+  const sub = isDark ? "text-[#8B949E]" : "text-[#57606A]";
 
   return (
     <section
@@ -116,7 +112,6 @@ export default function Skills({ isDark }: SkillsProps) {
       className={`px-5 py-24 transition-colors duration-500 ${bg}`}
     >
       <div className="max-w-[900px] mx-auto">
-
         {/* Header */}
         <p className={`font-mono text-[11px] font-medium tracking-[0.1em] uppercase mb-3 ${eyebrow}`}>
           // {t("skills.titulo").toLowerCase()}
@@ -137,9 +132,6 @@ export default function Skills({ isDark }: SkillsProps) {
             <SkillCard key={cat.key} category={cat} isDark={isDark} t={t} />
           ))}
         </div>
-
-        
-
       </div>
     </section>
   );

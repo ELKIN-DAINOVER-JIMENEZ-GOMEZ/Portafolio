@@ -1,81 +1,92 @@
-// ── Tipos ─────────────────────────────────────────────────────────────────────
-export type SkillLevel = "principal" | "intermedio" | "básico";
+// src/data/skills.ts
+// Skills basadas en el CV. Los nombres de categoría y las etiquetas de stats
+// se traducen con las claves de i18n (ver es.json / en.json → "skills").
 
 export interface Skill {
   name: string;
-  level: SkillLevel;
-  /** Porcentaje de dominio (0-100) — controla el ancho de la barra */
-  pct: number;
 }
 
 export interface SkillCategory {
-  category: string;
+  /** Clave de i18n relativa a "skills." (ej. "backend" → t("skills.backend")) */
+  key: string;
   icon: string;
-  /** Color de acento de la card (barra lateral + barras de progreso) */
   accent: string;
-  /** Fondo del ícono */
   iconBg: string;
   skills: Skill[];
 }
 
-// ── Datos ─────────────────────────────────────────────────────────────────────
+export interface SkillStat {
+  num: string;
+  suffix: string;
+  /** Clave de i18n completa */
+  labelKey: string;
+}
+
 export const SKILL_CATEGORIES: SkillCategory[] = [
   {
-    category: "Frontend",
-    icon: "⚡",
+    key: "backend",
+    icon: "⚙️",
     accent: "#58A6FF",
-    iconBg: "rgba(88,166,255,0.1)",
+    iconBg: "rgba(88,166,255,0.12)",
     skills: [
-      { name: "React",        level: "principal",  pct:64 },
-      { name: "TypeScript",   level: "principal",  pct: 64 },
-      { name: "TailwindCSS",  level: "principal",  pct: 64 },
-      { name: "JavaScript",   level: "principal", pct: 64 },
-      { name: "Angular",      level: "principal", pct: 64 },
-      { name: "HTML5 / CSS3", level: "principal",  pct: 90 },
+      { name: "Java" },
+      { name: "Spring Boot" },
+      { name: "API REST" },
+      { name: "Spring Security" },
+      { name: "Microservicios" },
+      { name: "Python" },
+      { name: "FastAPI" },
     ],
   },
   {
-    category: "Backend",
-    icon: "🔧",
-    accent: "#3FB950",
-    iconBg: "rgba(63,185,80,0.1)",
+    key: "frontend",
+    icon: "🎨",
+    accent: "#BC8CFF",
+    iconBg: "rgba(188,140,255,0.12)",
     skills: [
-      { name: "Java",        level: "principal",  pct: 75 },
-      { name: "Spring Boot", level: "principal",  pct: 80 },
-      { name: "REST API",    level: "principal",  pct: 80 },
-      { name: "JWT / Auth",  level: "principal",  pct: 80 },
-      { name: "Strapi",      level: "intermedio", pct: 65 },
+      { name: "React.js" },
+      { name: "Angular" },
+      { name: "TypeScript" },
+      { name: "JavaScript" },
     ],
   },
   {
-    category: "Bases de datos",
+    key: "base_datos",
     icon: "🗄️",
-    accent: "#F0B429",
-    iconBg: "rgba(240,180,41,0.1)",
+    accent: "#3FB950",
+    iconBg: "rgba(63,185,80,0.12)",
+    skills: [{ name: "SQL" }],
+  },
+  {
+    key: "devops",
+    icon: "🐳",
+    accent: "#F78166",
+    iconBg: "rgba(247,129,102,0.12)",
     skills: [
-      { name: "PostgreSQL", level: "principal",  pct: 85 },
-      { name: "SQL",        level: "principal",  pct: 88 },
-      { name: "MySQL",      level: "principal", pct: 70 },
+      { name: "Git / GitHub" },
+      { name: "Docker" },
+      { name: "Apache Kafka (Saga)" },
+      { name: "Postman" },
     ],
   },
   {
-    category: "DevOps & Tools",
-    icon: "🐳",
-    accent: "#A371F7",
-    iconBg: "rgba(163,113,247,0.1)",
-    skills: [
-      { name: "Docker",       level: "intermedio", pct: 70 },
-      { name: "Git / GitHub", level: "principal",  pct: 88 },
-      { name: "NGINX",        level: "básico",     pct: 40 },
-      { name: "Kafka",        level: "intermedio", pct: 62 },
-    ],
+    key: "calidad",
+    icon: "✅",
+    accent: "#D29922",
+    iconBg: "rgba(210,153,34,0.12)",
+    skills: [{ name: "JUnit" }, { name: "Mockito" }, { name: "Scrum" }],
+  },
+  {
+    key: "cloud",
+    icon: "☁️",
+    accent: "#39C5CF",
+    iconBg: "rgba(57,197,207,0.12)",
+    skills: [{ name: "AWS Cloud Foundations" }],
   },
 ];
 
-// ── Stats de la sección ───────────────────────────────────────────────────────
-export const SKILL_STATS = [
-  { num: "14", suffix: "+", label: "Tecnologías activas"     },
-  { num: "1.5", suffix: "+", label: "Años de experiencia"    },
-  { num: "4",  suffix: "",  label: "Proyectos construidos"   },
-  { num: "2",  suffix: "",  label: "Integraciones fiscales"  },
+export const SKILL_STATS: SkillStat[] = [
+  { num: "3", suffix: "", labelKey: "skills.stat_proyectos" },
+  { num: "1", suffix: "", labelKey: "skills.stat_cliente" },
+  { num: "6", suffix: "/8", labelKey: "skills.stat_semestres" },
 ];

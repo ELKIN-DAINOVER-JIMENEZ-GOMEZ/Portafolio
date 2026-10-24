@@ -195,9 +195,9 @@ export default function About({ isDark }: AboutProps) {
               </p>
               <p className={`text-[15.5px] leading-[1.8] ${muted}`}>
                 {t("about.bio_2_pre")}{" "}
-                <span className={highlight}>ISO 20022</span>{" "}
+                
                 {t("about.bio_2_mid")}{" "}
-                <span className={highlight}>DIAN</span>{" "}
+                <span className={highlight}>Factus</span>{" "}
                 {t("about.bio_2_post")}
               </p>
               <p className={`text-[15.5px] leading-[1.8] ${muted}`}>
